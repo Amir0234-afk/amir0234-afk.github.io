@@ -1,9 +1,9 @@
 export const SITE = {
-  name: 'Yamato',
-  title: 'Yamato — Systems, ML, Game Dev',
+  name: 'No One',
+  title: 'No One Builds — Systems, ML, Game Dev',
   description: 'Cybersecurity student building systems software, ML pipelines, and games. Notes from the workbench.',
   url: 'https://amir0234-afk.github.io',
-  author: 'Yamato',
+  author: 'No One',
   github: 'https://github.com/Amir0234-afk',
   email: '',
   linkedin: 'https://www.linkedin.com/in/amirali-hosseini-abrishami/',

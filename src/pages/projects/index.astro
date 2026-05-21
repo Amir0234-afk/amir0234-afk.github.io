@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<Base title="Projects — Yamato" description="Things I've built or am building.">
+<Base title="Projects — No One Builds" description="Things I've built or am building.">
   <section class="container head">
     <p class="label">projects</p>
     <h1>Things I've built or am building.</h1>
