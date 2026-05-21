@@ -73,6 +73,9 @@ function buildFrontmatter(article) {
     lines.push(`tags: [${article.tag_list.map(t => t.toLowerCase().replace(/\s+/g, '-')).join(', ')}]`);
   }
 
+  if (article.cover_image) {
+    lines.push(`cover_image: ${article.cover_image}`);
+  }
   lines.push(`devto_url: ${article.url}`);
   lines.push(`draft: false`);
   lines.push('---');

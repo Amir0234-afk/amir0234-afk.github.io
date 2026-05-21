@@ -16,7 +16,7 @@ const { Content } = await render(post);
 const d = post.data;
 const formatted = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
-<Base title={`${d.title} — Yamato`} description={d.summary}>
+<Base title={`${d.title} — Yamato`} description={d.summary} image={d.cover_image}>
   <article class="container article">
     <p class="label"><a href="/blog" class="muted">← blog</a></p>
     <header class="hd">
