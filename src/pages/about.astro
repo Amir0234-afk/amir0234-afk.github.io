@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="About — Yamato" description="Who I am and what I'm working on.">
+  <section class="container wrap">
+    <p class="label">about</p>
+    <h1>Hey, I'm Yamato.</h1>
+
+    <p class="lede muted">
+      Cybersecurity student at Tarbiat Modares University in Iran. I build
+      systems software, ML pipelines, and games — and I write about the
+      process while I'm doing it.
+    </p>
+
+    <h2>Currently</h2>
+    <ul class="now">
+      <li>Phase 1 — C &amp; Linux foundations: K&amp;R, OSTEP, The Linux Programming Interface. Rewriting coreutils, building a shell, stracing everything.</li>
+      <li>Researching GraphRAG architectures for my thesis.</li>
+      <li>Quietly working on a future project.</li>
+    </ul>
+
+    <h2>Roadmap</h2>
+    <p class="muted">
+      Rebuilding from the ground up across nine phases: C → OS internals &amp; Bash → Networking → Containers &amp; Kubernetes → CI/CD &amp; DevSecOps → Rust → Distributed Systems → C++ &amp; game engine work → language theory. Each phase has a capstone project. No shortcuts.
+    </p>
+
+    <h2>Stack</h2>
+    <p class="muted">
+      <strong>Now:</strong> C, Python, Bash, Linux, Docker, PyTorch, Godot.<br />
+      <strong>Next:</strong> Rust, Go (enough for K8s tooling), Kubernetes, OpenTelemetry.<br />
+      <strong>Eventually:</strong> Elixir or Haskell — one of them, for fun.
+    </p>
+
+    <h2>Elsewhere</h2>
+    <ul class="links">
+      <li><a href={SITE.github} target="_blank" rel="noreferrer">GitHub →</a></li>
+      {SITE.linkedin && <li><a href={SITE.linkedin} target="_blank" rel="noreferrer">LinkedIn →</a></li>}
+      {SITE.email && <li><a href={`mailto:${SITE.email}`}>Email →</a></li>}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .wrap { padding: 4rem 1.25rem 3rem; max-width: 720px; }
+  .lede { font-size: var(--step-1); margin-bottom: 2rem; }
+  h2 { margin-top: 2.5rem; font-size: var(--step-2); }
+  .now { padding-left: 1.25rem; }
+  .now li { margin: 0.4rem 0; color: var(--text-muted); }
+  .now em { color: var(--text); font-style: normal; }
+  .links { list-style: none; padding: 0; }
+  .links li { margin: 0.4rem 0; }
+</style>

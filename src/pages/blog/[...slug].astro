@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await post.render();
+const d = post.data;
+const formatted = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title={`${d.title} — Yamato`} description={d.summary}>
+  <article class="container article">
+    <p class="label"><a href="/blog" class="muted">← blog</a></p>
+    <header class="hd">
+      <h1>{d.title}</h1>
+      <p class="muted lede">{d.summary}</p>
+      <div class="meta">
+        <time datetime={d.date.toISOString()}>{formatted}</time>
+        {d.tags.length > 0 && (
+          <span class="tags">
+            {d.tags.map((t) => <span class="muted">#{t}</span>)}
+          </span>
+        )}
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article { padding: 3rem 1.25rem 4rem; max-width: 720px; }
+  .hd { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-soft); padding-bottom: 1.5rem; }
+  .hd h1 { margin: 0.5rem 0 0.5rem; }
+  .lede { font-size: var(--step-1); }
+  .meta {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+  }
+  .tags { display: inline-flex; gap: 0.6rem; flex-wrap: wrap; font-size: 0.85rem; }
+
+  .prose :global(h2) { margin-top: 2.5rem; }
+  .prose :global(h3) { margin-top: 1.75rem; }
+  .prose :global(img) { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border-soft); }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.25rem 1rem;
+    color: var(--text-muted);
+  }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.5rem; }
+  .prose :global(li) { margin: 0.35rem 0; }
+  .prose :global(a) {
+    border-bottom: 1px dashed var(--accent);
+  }
+  .prose :global(a:hover) { border-bottom-color: var(--accent-hot); }
+</style>

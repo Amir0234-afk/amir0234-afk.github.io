@@ -1,0 +1,461 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV — Amirali Hosseini Abrishami</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <Nav />
+
+  <a href="/cv.pdf" download class="print-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Download PDF
+  </a>
+
+  <div class="cv-outer">
+  <main class="cv">
+
+    <!-- HEADER -->
+    <header class="cv__header">
+      <div class="cv__name-block">
+        <h1 class="cv__name">Amirali Hosseini Abrishami</h1>
+        <p class="cv__title">Cybersecurity Researcher &amp; Systems Developer</p>
+      </div>
+      <ul class="cv__contact">
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:amir0234@outlook.com">amir0234@outlook.com</a>
+        </li>
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <a href="https://github.com/Amir0234-afk" target="_blank">github.com/Amir0234-afk</a>
+        </li>
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://www.linkedin.com/in/amirali-hosseini-abrishami/" target="_blank">amirali-hosseini-abrishami</a>
+        </li>
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tehran, Iran
+        </li>
+      </ul>
+    </header>
+
+    <div class="cv__rule"></div>
+
+    <!-- EDUCATION -->
+    <section class="cv__section">
+      <h2 class="cv__section-title">Education</h2>
+      <div class="cv__entries">
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">M.Sc. Cybersecurity</span>
+              <span class="cv__entry-org">Tarbiat Modares University</span>
+            </div>
+            <span class="cv__entry-date">Sep 2024 – Sep 2026 (expected)</span>
+          </div>
+          <p class="cv__entry-detail">Thesis: GraphRAG-based architectures for knowledge-intensive ML pipelines.</p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">B.Sc. Computer Engineering</span>
+              <span class="cv__entry-org">Islamic Azad University</span>
+            </div>
+            <span class="cv__entry-date">Sep 2018 – Sep 2024</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="cv__section">
+  <h2 class="cv__section-title">Experience</h2>
+  <div class="cv__entries">
+    <div class="cv__entry">
+      <div class="cv__entry-head">
+        <div>
+          <span class="cv__entry-title">Junior Angular Developer — Intern</span>
+          <span class="cv__entry-org">Nik Andish</span>
+        </div>
+        <span class="cv__entry-date">May 2024 – Oct 2024</span>
+      </div>
+      <div class="cv__stack">Angular · TypeScript · HTML/CSS</div>
+      <p class="cv__entry-detail">
+        Front-end development internship. Built and maintained Angular components
+        for client-facing web applications within an agile team.
+      </p>
+    </div>
+  </div>
+</section>
+    <!-- SKILLS -->
+    <section class="cv__section">
+      <h2 class="cv__section-title">Skills</h2>
+      <dl class="cv__skills">
+        <div class="cv__skill-row">
+          <dt>Languages</dt>
+          <dd>C · Python · Bash · GDScript · (Rust — in progress)</dd>
+        </div>
+        <div class="cv__skill-row">
+          <dt>ML / AI</dt>
+          <dd>PyTorch · PyTorch Geometric · HuggingFace Transformers · cuML · scikit-learn · Graph Neural Networks</dd>
+        </div>
+        <div class="cv__skill-row">
+          <dt>Systems</dt>
+          <dd>Linux · POSIX APIs · Docker · GNU Make · systemd</dd>
+        </div>
+        <div class="cv__skill-row">
+          <dt>Game Dev</dt>
+          <dd>Godot Engine 4 · Unreal Engine 5.1 (Blueprints)</dd>
+        </div>
+        <div class="cv__skill-row">
+          <dt>Tools</dt>
+          <dd>Git · GitHub Actions · VS Code · Wireshark · strace</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="cv__section">
+      <h2 class="cv__section-title">Selected Projects</h2>
+      <div class="cv__entries">
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">Anti-Money Laundering Detection — Elliptic Bitcoin Dataset</span>
+              <span class="cv__stack">Python · PyTorch Geometric · cuML</span>
+            </div>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/aml-elliptic" target="_blank">GitHub ↗</a>
+          </div>
+          <p class="cv__entry-detail">
+            Graph neural network (GCN, SkipGCN) vs. tabular baseline (Random Forest) comparison for illicit transaction classification on a real-world AML dataset. Accelerated tabular training with GPU via cuML. Random Forest achieved <strong>F1: 0.80</strong> (Precision: 0.90, Recall: 0.72); GNN track revealed limits of graph structure without rich neighbourhood features.
+          </p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">License Plate Segmentation — U-Net</span>
+              <span class="cv__stack">Python · TensorFlow · Keras</span>
+            </div>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/license-plate-segmentation-unet" target="_blank">GitHub ↗</a>
+          </div>
+          <p class="cv__entry-detail">
+            3-class semantic segmentation pipeline (background, border ring, plate interior) using a U-Net architecture. Achieved <strong>0.9982 pixel accuracy</strong> on the test set.
+          </p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">D&amp;D AI Game Master</span>
+              <span class="cv__stack">Python · FastAPI · React 19 · TypeScript</span>
+            </div>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/dnd-ai" target="_blank">GitHub ↗</a>
+          </div>
+          <p class="cv__entry-detail">
+            Browser-based solo tabletop RPG with an LLM as Game Master. FastAPI backend with provider-agnostic LLM routing (OpenAI, Anthropic, Gemini, Ollama). Persistent memory via rolling summarisation every 10 turns; React 19 + Vite frontend.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="cv__section">
+      <h2 class="cv__section-title">Activities</h2>
+      <div class="cv__entries">
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">Member, Game Developers Association</span>
+              <span class="cv__entry-org">Islamic Azad University</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </div>
+
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  /* ─── Screen tokens ─── */
+  :root {
+    --bg:         #0b0822;
+    --surface:    #13102b;
+    --border:     #1e3a8a26;
+    --accent:     #8b5cf6;
+    --accent-hot: #ec4899;
+    --text:       #e7e5ee;
+    --text-muted: #9aa0b4;
+    --text-dim:   #6b7088;
+    --rule:       #1e3a8a40;
+
+    --serif:  "Instrument Serif", Georgia, serif;
+    --sans:   "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono:   "DM Mono", ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100dvh;
+  }
+
+  .cv-outer {
+    padding: 2rem 1.25rem 5rem;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hot); }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Print button (screen only) ─── */
+  .print-btn {
+    position: fixed;
+    top: 5rem; right: 1.25rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+    z-index: 9;
+  }
+  .print-btn:hover { background: var(--accent); color: var(--bg); }
+
+  /* ─── CV shell ─── */
+  .cv {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 3rem 3.5rem;
+  }
+
+  /* ─── Header ─── */
+  .cv__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cv__name {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .cv__title {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+  .cv__contact {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: right;
+  }
+  .cv__contact li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+  .cv__contact svg { flex-shrink: 0; color: var(--accent); }
+  .cv__contact a { color: var(--text-muted); }
+  .cv__contact a:hover { color: var(--accent); }
+
+  /* ─── Rule ─── */
+  .cv__rule {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-hot), var(--accent), transparent);
+    margin: 1.75rem 0;
+    opacity: 0.5;
+  }
+
+  /* ─── Sections ─── */
+  .cv__section { margin-bottom: 2rem; }
+
+  .cv__section-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-hot);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ─── Entries ─── */
+  .cv__entries { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .cv__entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+  .cv__entry-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--text);
+  }
+  .cv__entry-org {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-left: 0.6rem;
+  }
+  .cv__entry-org::before { content: "·"; margin-right: 0.6rem; color: var(--text-dim); }
+  .cv__entry-date {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cv__entry-link {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cv__entry-link:hover { color: var(--accent); }
+  .cv__stack {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+  .cv__entry-detail {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 68ch;
+  }
+
+  /* ─── Skills ─── */
+  .cv__skills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cv__skill-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .cv__skill-row dt {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .cv__skill-row dd {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 18mm 18mm 18mm 18mm;
+    }
+
+    :root {
+      --bg: #fff;
+      --surface: #fff;
+      --text: #111;
+      --text-muted: #444;
+      --text-dim: #777;
+      --accent: #5b21b6;
+      --accent-hot: #be185d;
+      --rule: #e5e7eb;
+      --border: #e5e7eb;
+    }
+
+    html { background: #fff; font-size: 10.5pt; }
+    body { background: #fff; padding: 0; }
+
+    .print-btn { display: none; }
+    .nav, footer { display: none; }
+
+    .cv {
+      max-width: 100%;
+      background: #fff;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .cv__name { font-size: 24pt; }
+
+    a { color: #444 !important; }
+    .cv__contact a { color: #444 !important; }
+
+    .cv__entry-link { color: #777 !important; }
+
+    /* avoid orphaned section titles */
+    .cv__section { break-inside: avoid; }
+    .cv__entry { break-inside: avoid; }
+    .cv__section-title { break-after: avoid; }
+  }
+</style>

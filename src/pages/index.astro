@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '../config';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const featured = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latest = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<Base>
+  <section class="hero container">
+    <p class="label">Yamato · cybersecurity student · iran</p>
+    <h1 class="hero__title">
+      Building <span class="grad">systems software</span>, ML pipelines,<br />
+      and games — out loud.
+    </h1>
+    <p class="hero__lede">
+      Currently working through the C/Linux/OS internals fundamentals while
+      shipping ML research, a Godot game, and a self-hosted SaaS. Notes from
+      the workbench live in the blog.
+    </p>
+    <div class="hero__cta">
+      <a class="btn" href="/projects">view projects →</a>
+      <a class="btn btn--hot" href={SITE.github} target="_blank" rel="noreferrer">github ↗</a>
+    </div>
+    <ul class="hero__now">
+      <li><span class="label">now</span> K&R · OSTEP · GraphRAG thesis</li>
+      <li><span class="label">stack</span> C · Python · Godot · PyTorch · Linux</li>
+    </ul>
+  </section>
+
+  <section class="container section">
+    <header class="section__head">
+      <h2>Featured projects</h2>
+      <a href="/projects" class="muted">all projects →</a>
+    </header>
+    {featured.length === 0 ? (
+      <p class="muted">Mark projects as <code>featured: true</code> in their frontmatter to surface them here.</p>
+    ) : (
+      <div class="grid">
+        {featured.map((p) => (
+          <ProjectCard
+            href={`/projects/${p.slug}`}
+            title={p.data.title}
+            summary={p.data.summary}
+            tags={p.data.tags}
+            stack={p.data.stack}
+            status={p.data.status}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+
+  <section class="container section">
+    <header class="section__head">
+      <h2>Latest writing</h2>
+      <a href="/blog" class="muted">all posts →</a>
+    </header>
+    {latest.length === 0 ? (
+      <p class="muted">No posts yet. Add markdown files in <code>src/content/blog/</code>.</p>
+    ) : (
+      <div class="posts">
+        {latest.map((post) => (
+          <PostCard
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            summary={post.data.summary}
+            date={post.data.date}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 5rem 1.25rem 4rem;
+  }
+  .hero__title {
+    margin: 0.75rem 0 1rem;
+    font-size: var(--step-4);
+    max-width: 18ch;
+  }
+  .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-hot));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero__lede {
+    max-width: 60ch;
+    color: var(--text-muted);
+    font-size: var(--step-1);
+  }
+  .hero__cta {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin: 1.5rem 0 2rem;
+  }
+  .hero__now {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid; gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .hero__now .label { margin-right: 0.5rem; }
+
+  .section { padding: 2.5rem 1.25rem; }
+  .section__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
+  .section__head h2 { margin: 0; font-size: var(--step-2); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .posts { display: block; }
+</style>

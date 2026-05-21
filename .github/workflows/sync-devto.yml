@@ -1,0 +1,39 @@
+name: Sync Dev.to posts
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour
+  workflow_dispatch:        # run manually from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync Dev.to posts
+        env:
+          DEVTO_USERNAME: ${{ vars.DEVTO_USERNAME }}
+          # DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}  # uncomment if you want drafts
+        run: node scripts/sync-devto.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/
+          if git diff --cached --quiet; then
+            echo "No changes — skipping commit."
+          else
+            git commit -m "sync: import posts from dev.to"
+            git push
+          fi

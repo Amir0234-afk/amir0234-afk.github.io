@@ -1,0 +1,82 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  tags?: string[];
+  stack?: string[];
+  status?: 'active' | 'shipped' | 'archived' | 'wip';
+}
+const { href, title, summary, tags = [], stack = [], status } = Astro.props;
+const statusLabel = status ?? 'wip';
+const statusClass = `status status--${statusLabel}`;
+---
+<a href={href} class="card">
+  <header class="card__head">
+    <h3 class="card__title">{title}</h3>
+    <span class={statusClass}>{statusLabel}</span>
+  </header>
+  <p class="card__summary">{summary}</p>
+  {stack.length > 0 && (
+    <div class="card__stack">
+      {stack.slice(0, 5).map((s) => <span class="tag">{s}</span>)}
+    </div>
+  )}
+  {tags.length > 0 && (
+    <div class="card__tags">
+      {tags.slice(0, 3).map((t) => <span class="muted card__tag">#{t}</span>)}
+    </div>
+  )}
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    color: var(--text);
+    transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: color-mix(in oklab, var(--surface) 92%, var(--accent) 8%);
+  }
+  .card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+  .card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--text);
+  }
+  .card__summary {
+    color: var(--text-muted);
+    margin: 0.25rem 0 0.85rem;
+    font-size: 0.95rem;
+  }
+  .card__stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; }
+  .card__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .card__tag { font-family: var(--font-mono); font-size: 0.78rem; }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15em 0.5em;
+    border-radius: 999px;
+    border: 1px solid var(--border-soft);
+    white-space: nowrap;
+  }
+  .status--shipped { color: var(--accent); border-color: var(--accent); }
+  .status--active  { color: var(--accent-hot); border-color: var(--accent-hot); }
+  .status--wip     { color: var(--text-muted); }
+  .status--archived { color: var(--text-dim); }
+</style>

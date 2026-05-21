@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Blog — Yamato" description="Notes from the workbench.">
+  <section class="container head">
+    <p class="label">blog</p>
+    <h1>Notes from the workbench.</h1>
+    <p class="muted">Things I figured out, broke, rebuilt, or am still confused about.</p>
+  </section>
+
+  <section class="container list">
+    {posts.length === 0 ? (
+      <p class="muted">No posts yet. Add <code>.mdx</code> files in <code>src/content/blog/</code>.</p>
+    ) : (
+      <div class="posts">
+        {posts.map((p) => (
+          <PostCard
+            href={`/blog/${p.slug}`}
+            title={p.data.title}
+            summary={p.data.summary}
+            date={p.data.date}
+            tags={p.data.tags}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</Base>
+
+<style>
+  .head { padding: 4rem 1.25rem 1rem; }
+  .head h1 { margin: 0.5rem 0; }
+  .list { padding: 1rem 1.25rem 3rem; }
+</style>

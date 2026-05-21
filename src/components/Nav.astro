@@ -1,0 +1,85 @@
+---
+import { NAV, SITE } from '../config';
+const path = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="/" class="nav__brand" aria-label="Home">
+      <img src="/0234.png" alt="" aria-hidden="true" class="nav__logo" />
+      <span class="nav__name">{SITE.name}</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav__list">
+        {NAV.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class={`nav__link${isActive(item.href) ? ' is-active' : ''}`}
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: color-mix(in oklab, var(--bg) 80%, transparent);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.25rem;
+  }
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nav__logo {
+    width: 2.2rem;
+    height: 2.2rem;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
+  .nav__list {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__link {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    position: relative;
+    padding: 0.25rem 0;
+  }
+  .nav__link:hover { color: var(--text); }
+  .nav__link.is-active { color: var(--accent); }
+  .nav__link.is-active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hot));
+    border-radius: 2px;
+  }
+  @media (max-width: 560px) {
+    .nav__list { gap: 0.85rem; }
+    .nav__name { display: none; }
+  }
+</style>

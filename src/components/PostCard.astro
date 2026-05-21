@@ -1,0 +1,54 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  date: Date;
+  tags?: string[];
+}
+const { href, title, summary, date, tags = [] } = Astro.props;
+const formatted = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const iso = date.toISOString();
+---
+<article class="post">
+  <a href={href} class="post__link">
+    <div class="post__meta">
+      <time datetime={iso}>{formatted}</time>
+      {tags.length > 0 && (
+        <span class="post__tags">
+          {tags.slice(0, 3).map((t) => <span class="post__tag">#{t}</span>)}
+        </span>
+      )}
+    </div>
+    <h3 class="post__title">{title}</h3>
+    <p class="post__summary">{summary}</p>
+  </a>
+</article>
+
+<style>
+  .post { border-bottom: 1px solid var(--border-soft); }
+  .post:last-child { border-bottom: none; }
+  .post__link {
+    display: block;
+    padding: 1.25rem 0;
+    color: var(--text);
+  }
+  .post__link:hover .post__title { color: var(--accent); }
+  .post__meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+  .post__tags { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; }
+  .post__tag { color: var(--text-dim); }
+  .post__title {
+    margin: 0 0 0.3rem;
+    font-size: 1.25rem;
+    transition: color 120ms ease;
+  }
+  .post__summary { color: var(--text-muted); margin: 0; }
+</style>
