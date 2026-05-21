@@ -1,15 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+  return posts.map((p) => ({
+    params: { slug: p.id.replace(/\.(md|mdx)$/, '') },
+    props: { post: p },
+  }));
 }
 
 interface Props { post: CollectionEntry<'blog'> }
 const { post } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await post.render();
+const { Content } = await render(post);
 const d = post.data;
 const formatted = d.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
@@ -58,8 +61,6 @@ const formatted = d.date.toLocaleDateString('en-US', { year: 'numeric', month: '
   }
   .prose :global(ul), .prose :global(ol) { padding-left: 1.5rem; }
   .prose :global(li) { margin: 0.35rem 0; }
-  .prose :global(a) {
-    border-bottom: 1px dashed var(--accent);
-  }
+  .prose :global(a) { border-bottom: 1px dashed var(--accent); }
   .prose :global(a:hover) { border-bottom-color: var(--accent-hot); }
 </style>

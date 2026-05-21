@@ -20,7 +20,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <div class="posts">
         {posts.map((p) => (
           <PostCard
-            href={`/blog/${p.slug}`}
+            href={`/blog/${p.id.replace(/\.(md|mdx)$/, '')}`}
             title={p.data.title}
             summary={p.data.summary}
             date={p.data.date}

@@ -49,7 +49,7 @@ const latest = allPosts
       <div class="grid">
         {featured.map((p) => (
           <ProjectCard
-            href={`/projects/${p.slug}`}
+            href={`/projects/${p.id.replace(/\.(md|mdx)$/, '')}`}
             title={p.data.title}
             summary={p.data.summary}
             tags={p.data.tags}
@@ -72,7 +72,7 @@ const latest = allPosts
       <div class="posts">
         {latest.map((post) => (
           <PostCard
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}
             title={post.data.title}
             summary={post.data.summary}
             date={post.data.date}
