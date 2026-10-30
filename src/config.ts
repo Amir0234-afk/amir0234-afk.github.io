@@ -7,6 +7,8 @@ export const SITE = {
   studio: "No One's Studio",
   github: 'https://github.com/Amir0234-afk',
   email: '',
+  devto: 'https://dev.to/yamato0234',
+  studioUrl: 'https://no0nestudio.com',
   linkedin: 'https://www.linkedin.com/in/amirali-hosseini-abrishami/',
 };
 

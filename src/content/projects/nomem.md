@@ -16,6 +16,7 @@ nomem takes conversation turns, extracts entities and relationships, matches the
 ## Example
 
 ```python
+# excerpt (see the README for the full example)
 from nomem import MemoryGraph
 
 with MemoryGraph(user_id="u123", backend_options={"path": "memory.sqlite"}) as graph:

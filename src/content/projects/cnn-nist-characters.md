@@ -21,8 +21,4 @@ Systematic exploration of CNN architecture decisions on NIST SD19: filter count,
 
 ## Output
 
-Each run saves: confusion matrix heatmap, sample prediction grid, misclassification log, per-class F1 report. Reproducible via fixed seeds.
-
-## Takeaway
-
-Max pooling + ReLU reliably outperformed the alternatives on this dataset.
+The script saves confusion matrices, sample predictions and evaluation metrics.
