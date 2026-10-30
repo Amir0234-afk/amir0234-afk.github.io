@@ -7,7 +7,7 @@ export default defineConfig({
   // If deploying to https://amir0234-afk.github.io/portfolio set base: '/portfolio'
   // If using a custom domain or user-site (amir0234-afk.github.io), leave base undefined.
   // base: '/portfolio',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap({ filter: (page) => !page.endsWith('/cv/') })],
   markdown: {
     shikiConfig: {
       theme: 'github-dark-dimmed',

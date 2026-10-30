@@ -1,6 +1,6 @@
 # Yamato — No One's Studio (portfolio)
 
-Astro static site. Content-first dev portfolio with blog, projects, and CV.
+Astro static site for Yamato · No One's Studio: home, projects, blog (synced from dev.to), about, and an on-page CV that CI also prints to `cv.pdf`. No third-party runtime assets; fonts are self-hosted.
 
 ## Quick start
 
@@ -126,7 +126,7 @@ Live at `https://amir0234-afk.github.io/portfolio/`.
 2. Commit. The blog post itself is the deliverable, the repo history is the journal.
 3. Push to `main`. CI builds and deploys in ~1 minute.
 
-Cross-post finished blog posts to dev.to manually for distribution. The canonical URL stays here.
+Blog posts are written on dev.to and imported hourly by `.github/workflows/sync-devto.yml` (`scripts/sync-devto.js`) into `src/content/blog/`. Do not hand-edit imported posts.
 
 ## What's not done yet
 

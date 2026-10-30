@@ -36,6 +36,7 @@ jobs:
           google-chrome-stable --headless=new --no-sandbox \
             --print-to-pdf=dist/cv.pdf \
             --no-pdf-header-footer \
+            --virtual-time-budget=5000 \
             http://localhost:4322/cv
 
       - uses: actions/upload-pages-artifact@v3
