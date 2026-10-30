@@ -1,11 +1,14 @@
 export const SITE = {
-  name: 'No One',
-  title: 'No One Builds — Systems, ML, Game Dev',
-  description: 'Cybersecurity student building systems software, ML pipelines, and games. Notes from the workbench.',
+  name: 'Yamato',
+  title: "Yamato — No One's Studio",
+  description: 'Yamato builds verifiable-AI research, agent-memory tooling and local-first software.',
   url: 'https://amir0234-afk.github.io',
-  author: 'No One',
+  author: 'Yamato',
+  studio: "No One's Studio",
   github: 'https://github.com/Amir0234-afk',
   email: '',
+  devto: 'https://dev.to/yamato0234',
+  studioUrl: 'https://no0nestudio.com',
   linkedin: 'https://www.linkedin.com/in/amirali-hosseini-abrishami/',
 };
 

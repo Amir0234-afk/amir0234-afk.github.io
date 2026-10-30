@@ -1,10 +1,10 @@
 ---
 title: "zsh-vibecheck"
-summary: "Three zsh functions that judge your actions: based, cringe, and vibecheck. ASCII art included. Pointless but necessary."
+summary: "Three zsh functions that judge your actions: based, cringe, vibecheck."
 date: 2025-06-01
 status: shipped
-featured: false
-tags: [shell, zsh, tools]
+featured: true
+tags: [Shell, zsh]
 stack: [Shell, zsh]
 repo: https://github.com/Amir0234-afk/zsh-vibecheck
 ---

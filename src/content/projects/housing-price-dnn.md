@@ -7,6 +7,7 @@ featured: false
 tags: [ml, regression, keras]
 stack: [Python, Keras, TensorFlow, NumPy, Pandas]
 repo: https://github.com/Amir0234-afk/housing-price-prediction-DNN
+draft: true
 ---
 
 ## What

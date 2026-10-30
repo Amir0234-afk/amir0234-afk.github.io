@@ -1,6 +1,6 @@
 ---
 title: "AML detection on the Elliptic Bitcoin dataset"
-summary: "Graph neural networks vs. tabular baselines for anti-money-laundering classification. PyTorch Geometric + cuML. Best RF F1: 0.80."
+summary: "Graph neural networks vs. tabular baselines for anti-money-laundering classification. Best illicit-class F1 0.80 (Random Forest, temporal split: train steps 1–34, test 35–49); GCN/SkipGCN ≈ 0.51–0.52."
 date: 2025-12-10
 status: shipped
 featured: true
@@ -25,11 +25,14 @@ Five orchestrated phases: preprocessing → training → evaluation → embeddin
 
 ## Results
 
+Best illicit-class F1 0.80 (Random Forest, temporal split: train steps 1–34, test 35–49), evaluated on labeled nodes in the test window. GCN and SkipGCN reach about 0.51 and 0.52.
+
 | Model              | Precision | Recall | F1 (illicit) |
 |--------------------|-----------|--------|--------------|
 | Random Forest      | 0.8992    | 0.7248 | **0.8027**   |
 | RF + GCN Embeddings| 0.9929    | 0.6445 | 0.7816       |
-| GCN                | —         | —      | 0.69         |
+| GCN                | 0.5069    | 0.5115 | 0.5092       |
+| SkipGCN            | 0.4729    | 0.5789 | 0.5205       |
 
 Tabular won on this dataset — the engineered features carry a lot. The hybrid approach traded recall for very high precision.
 

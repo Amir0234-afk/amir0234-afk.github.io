@@ -7,6 +7,7 @@ featured: false
 tags: [gamedev, unreal-engine, blueprint]
 stack: [Unreal Engine 5.1.1, Blueprint]
 repo: https://github.com/Amir0234-afk/Base-FlappyBirdClone-UnrealEngine-5.1.1
+draft: true
 ---
 
 ## What

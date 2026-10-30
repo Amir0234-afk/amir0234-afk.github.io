@@ -2,9 +2,9 @@
 
 ## What this is
 
-Personal developer portfolio for Yamato (github.com/Amir0234-afk), a cybersecurity student at Tarbiat Modares University, Iran. Built with Astro 6, deployed to GitHub Pages. The site has five sections: landing, projects, blog, about, CV.
+Personal site for Yamato (github.com/Amir0234-afk), branded "Yamato — No One's Studio". M.Sc. Cybersecurity student (Tarbiat Modares University, Tehran) building nomem, researching verifiable inference for GraphRAG, and shipping local-first tools. Built with Astro 6, deployed to GitHub Pages at https://amir0234-afk.github.io. Sections: home, projects, blog, about, CV.
 
-The scaffold is complete and running locally. The agent's job is content, configuration, and deployment wiring — not architecture.
+Content and configuration only; do not change architecture.
 
 ---
 
@@ -12,15 +12,17 @@ The scaffold is complete and running locally. The agent's job is content, config
 
 - **Astro 6** — static site, file-based routing, content collections via glob loader
 - **MDX** — blog posts support components
-- **Shiki** — build-time code highlighting, theme: `github-dark-dimmed`
-- **@astrojs/sitemap**, **@astrojs/rss** — already integrated
+- **Shiki** — build-time code highlighting, theme `github-dark-dimmed`
+- **@astrojs/sitemap**, **@astrojs/rss**
+- **@astrojs/check** + **typescript** (dev only) for `npx astro check`
 - No client-side JS framework. No UI library.
+- **No third-party runtime assets.** Fonts (Inter, JetBrains Mono; latin woff2), images and icons are self-hosted under `public/`. No CDN fonts, scripts, analytics or badges.
 
 ---
 
 ## Design system
 
-All tokens in `src/styles/global.css` under `:root`. Do not hardcode colors elsewhere.
+All tokens in `src/styles/global.css` under `:root`. Do not hardcode colors elsewhere. Do not change the tokens.
 
 | Token | Value | Role |
 |---|---|---|
@@ -41,210 +43,73 @@ All tokens in `src/styles/global.css` under `:root`. Do not hardcode colors else
 
 ```
 src/
-  components/
-    Nav.astro           sticky nav with active-link indicator
-    Footer.astro        links to GitHub, LinkedIn, RSS
-    ProjectCard.astro   card with title, summary, stack tags, status badge
-    PostCard.astro      blog post row with date, tags, summary
-  layouts/
-    Base.astro          head meta, OG tags, fonts, Nav, Footer, skip link
+  components/   Nav, Footer, ProjectCard, PostCard
+  layouts/      Base.astro — head meta, OG/twitter tags (default og.png), fonts preload, skip link (#main)
   pages/
-    index.astro         landing: hero + featured projects + latest posts
-    about.astro         bio, current focus, links
-    projects/
-      index.astro       grid of all non-draft projects
-      [...slug].astro   project detail: rendered markdown + meta + repo/demo links
-    blog/
-      index.astro       list of all non-draft posts
-      [...slug].astro   post detail: rendered MDX
-    rss.xml.js          RSS feed
+    index.astro        hero + 4 featured projects + latest posts
+    about.astro        short bio + contact links
+    cv.astro           on-page HTML CV (noindex); CI prints it to /cv.pdf
+    projects/          index + [...slug] detail
+    blog/              index + [...slug] detail
+    rss.xml.js
   content/
-    content.config.ts   collection schemas (projects + blog, glob loader)
-    projects/           one .md file per project
-    blog/               one .mdx file per post
-  styles/
-    global.css          design tokens + base styles + utility classes
-  config.ts             SITE object + NAV array — single source of truth
+    projects/*.md      one file per project (schema below)
+    blog/*.mdx         synced from dev.to by scripts/sync-devto.js — do not hand-edit
+  content.config.ts    collection schemas
+  styles/global.css    tokens, @font-face, base styles
+  config.ts            SITE object + NAV array — single source of truth
 public/
-  favicon.svg           diamond logo in brand colors
-  cv.pdf                [MISSING — agent must not create, just note it]
-.github/
-  workflows/
-    deploy.yml          push to main → build → GitHub Pages
-```
-
----
-
-## src/config.ts — update these fields
-
-```ts
-export const SITE = {
-  name: 'Yamato',
-  title: 'Yamato — Systems, ML, Game Dev',
-  description: 'Cybersecurity student building systems software, ML pipelines, and games.',
-  url: 'https://amir0234-afk.github.io',   // update if using custom domain
-  author: 'Yamato',
-  github: 'https://github.com/Amir0234-afk',
-  email: '',       // fill in or leave empty
-  linkedin: '',    // fill in or leave empty
-};
+  fonts/               self-hosted woff2 + OFL licences
+  og.png               1200x630 social card (source: scripts/og-source.svg)
+  0234.png             256px nav logo
+  favicon.ico          (favicon.svg is unused)
+scripts/
+  sync-devto.js        hourly dev.to import (sync-devto.yml)
+  og-source.svg        source of public/og.png
+.github/workflows/
+  deploy.yml           push to main → build → print /cv to dist/cv.pdf → GitHub Pages
+  sync-devto.yml       imports dev.to posts into src/content/blog
 ```
 
 ---
 
 ## Content collections
 
-### Project frontmatter schema
+### Project frontmatter
 
 ```md
 ---
 title: string           required
 summary: string         required — one line, shown in cards and meta
-date: YYYY-MM-DD        required
+date: YYYY-MM-DD        required (home page featured cards sort by date, newest first, max 4)
 updated: YYYY-MM-DD     optional
 status: wip | active | shipped | archived
-featured: true | false  true = appears on landing page (max 4 shown)
-tags: [string]          topic tags, shown as #tag in muted text
-stack: [string]         tech used, shown as pill tags on card
+featured: true | false  true = appears on the home page
+tags: [string]
+stack: [string]
 repo: https://...       optional
 demo: https://...       optional
 draft: true | false     true = hidden from all pages and feeds
 ---
 ```
 
-### Blog frontmatter schema
-
-```md
----
-title: string
-summary: string         shown in post list and meta description
-date: YYYY-MM-DD
-updated: YYYY-MM-DD     optional
-tags: [string]
-draft: true | false
----
-```
+Blog frontmatter is produced by the sync script (title, summary, date, tags, cover_image, devto_url, draft).
 
 ---
 
-## Projects to add
+## Rules
 
-Add one `.md` file per project in `src/content/projects/`. Base content on the descriptions below. Write a proper body for each: ## Why, ## Approach, ## Results (if applicable), ## What I learned. Be technical and specific — this is the actual hiring signal.
+- Do not invent facts: no email on the public site (the CV intentionally lists one), no metrics, no dates, no release claims. Leave a marked TODO instead.
+- Do not link to or describe private repos (thesis code, bot, storefront code, nomem-pro). The thesis may only appear generically as research.
+- Use the git-URL install line for nomem until PyPI ownership is confirmed by the owner.
+- Do not edit blog post bodies.
+- No new dependencies unless essential.
+- Keep `noindex` on `/cv`.
 
-### 1. IMDB Sentiment Analysis
-- **File:** `imdb-sentiment.md`
-- **Status:** shipped
-- **Stack:** Python, PyTorch, HuggingFace Transformers
-- **Tags:** nlp, ml, classification
-- **Key result:** F1 0.93 on IMDB test set
-- **Featured:** false
+## CV
 
-### 2. CNN Handwritten Character Recognition
-- **File:** `cnn-handwriting.md`
-- **Status:** shipped
-- **Stack:** Python, PyTorch, NIST SD19
-- **Tags:** ml, cv, cnn
-- **Key result:** ~73% accuracy on NIST SD19 dataset
-- **Featured:** false
-
-### 3. License Plate Segmentation (U-Net)
-- **File:** `license-plate-unet.md`
-- **Status:** shipped
-- **Stack:** Python, PyTorch, U-Net
-- **Tags:** ml, cv, segmentation
-- **Key result:** ~99% localization accuracy
-- **Featured:** true
-
-### 4. AML Detection — Elliptic Bitcoin Dataset
-- **File:** `aml-detection.md` (already exists, expand the body)
-- **Status:** shipped
-- **Stack:** Python, PyTorch, PyTorch Geometric, cuML
-- **Tags:** ml, gnn, security
-- **Key result:** Best RF F1: 0.80; GNN underperformed tabular on this dataset
-- **Featured:** true
-
-### 5. Flappy Bird Clone — Unreal Engine 5.1
-- **File:** `flappy-bird-ue5.md`
-- **Status:** shipped
-- **Stack:** Unreal Engine 5.1, Blueprints
-- **Tags:** gamedev, ue5
-- **Featured:** false
-
-### 6. yshell — Toy Unix Shell in C
-- **File:** `yshell.md` (already exists, update status when complete)
-- **Status:** wip
-- **Stack:** C, POSIX, GNU Make
-- **Tags:** systems, c, unix
-- **Featured:** true
-
-### 7. Cold Promise — 2D Narrative Game
-- **File:** `cold-promise.md`
-- **Status:** active
-- **Stack:** Godot 4, GDScript
-- **Tags:** gamedev, godot, narrative
-- **Featured:** true
-- **Note:** active development, update body as milestones ship
-
-### 8. Nexus Room — AI SaaS Platform
-- **File:** `nexus-room.md`
-- **Status:** active
-- **Stack:** Python, FastAPI, React (or whatever the actual stack is)
-- **Tags:** saas, ai, fullstack
-- **Featured:** true
-- **Note:** keep vague on unshipped features; focus on what exists
-
----
-
-## About page
-
-`src/pages/about.astro` — the body text is a placeholder. Rewrite to Yamato's voice. Keep these facts:
-
-- Cybersecurity student, Tarbiat Modares University, Iran
-- Working through C/Linux/OS internals (K&R, OSTEP, TLPI)
-- Research focus: GraphRAG
-- Active projects: Nexus Room (SaaS), Cold Promise (Godot game)
-- Interests outside code: tabletop RPG/collaborative storytelling, anime/manga, miniature figure painting, music (Suno AI)
-- GitHub: github.com/Amir0234-afk
-
-Do not invent specifics. If a field is unknown, omit it or write a placeholder comment for Yamato to fill in.
-
----
-
-## Blog posts to write
-
-Minimum viable: one post per shipped or active project, one post about the learning roadmap. File naming: `YYYY-MM-DD-slug.mdx` is optional but helpful for sorting.
-
-Suggested first posts (drafts welcome, set `draft: true` until ready):
-
-1. `hello-systems.mdx` — already exists, edit to Yamato's voice
-2. `graphrag-thesis-approach.mdx` — what the thesis is, why GraphRAG, early decisions
-3. `aml-gnn-vs-tabular.mdx` — the result where RF beat GNN; lessons on when not to use GNNs
-4. `building-cold-promise.mdx` — game dev devlog format, what the game is, current state
-
----
+`/cv` is the single HTML source for both the page and `cv.pdf`. CI serves `dist/`, prints `/cv` with headless Chrome (`--virtual-time-budget` so self-hosted fonts load) and uploads the result as `dist/cv.pdf`. `cv.pdf` is not committed and does not exist in local builds.
 
 ## Deployment
 
-### GitHub Pages setup (do once)
-
-1. Create repo named `amir0234-afk.github.io` on GitHub (user site — cleaner URL).
-2. Push this project to `main` on that repo.
-3. GitHub repo → Settings → Pages → Source: **GitHub Actions**.
-4. The workflow at `.github/workflows/deploy.yml` handles everything on push.
-
-If using a different repo name (e.g. `portfolio`), set `base: '/portfolio'` in `astro.config.mjs` and update `site` accordingly.
-
-### CV
-
-Drop `cv.pdf` into `public/`. It's linked from the nav. Do not generate or stub it.
-
----
-
-## What the agent must NOT do
-
-- Do not change the design system tokens.
-- Do not add client-side JS frameworks (React, Vue, Svelte) unless explicitly asked.
-- Do not add authentication, databases, or server-side rendering.
-- Do not invent personal details (email, LinkedIn, CV content, project metrics) that aren't in this spec.
-- Do not move, rename, or restructure files outside `src/content/`.
-- Do not add features not listed here. Content and configuration only.
+User site `amir0234-afk.github.io`, GitHub Pages source set to GitHub Actions. `site` in `astro.config.mjs` is `https://amir0234-afk.github.io`; leave `base` unset.

@@ -1,6 +1,6 @@
 ---
 title: "CNN experiments on NIST SD19 handwritten characters"
-summary: "Modular CNN pipeline for systematic architecture search on the NIST SD19 handwritten character dataset. 0.7835 test accuracy."
+summary: "Single-script CNN experiments on NIST SD19: filter sizes, kernels, depth, pooling and activations (TensorFlow/Keras). 0.7835 test accuracy."
 date: 2025-07-01
 status: shipped
 featured: false
@@ -21,8 +21,4 @@ Systematic exploration of CNN architecture decisions on NIST SD19: filter count,
 
 ## Output
 
-Each run saves: confusion matrix heatmap, sample prediction grid, misclassification log, per-class F1 report. Reproducible via fixed seeds.
-
-## Takeaway
-
-Max pooling + ReLU reliably outperformed the alternatives on this dataset. The modular structure made ablations cheap to run.
+The script saves confusion matrices, sample predictions and evaluation metrics.

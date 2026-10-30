@@ -7,6 +7,7 @@ featured: true
 tags: [fullstack, ai, python, typescript]
 stack: [Python, FastAPI, React, TypeScript, Vite, LLM]
 repo: https://github.com/Amir0234-afk/dnd-ai
+draft: true
 ---
 
 ## What

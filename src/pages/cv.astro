@@ -8,11 +8,9 @@ import '../styles/global.css';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CV — Amirali Hosseini Abrishami</title>
+  <title>CV — Amirali Hosseini Abrishami (Yamato)</title>
   <meta name="robots" content="noindex" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 <body>
   <Nav />
@@ -27,13 +25,13 @@ import '../styles/global.css';
   </a>
 
   <div class="cv-outer">
-  <main class="cv">
+  <main class="cv" id="main">
 
     <!-- HEADER -->
     <header class="cv__header">
       <div class="cv__name-block">
         <h1 class="cv__name">Amirali Hosseini Abrishami</h1>
-        <p class="cv__title">Cybersecurity Researcher &amp; Systems Developer</p>
+        <p class="cv__title">Yamato · No One's Studio</p>
       </div>
       <ul class="cv__contact">
         <li>
@@ -47,6 +45,14 @@ import '../styles/global.css';
         <li>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           <a href="https://www.linkedin.com/in/amirali-hosseini-abrishami/" target="_blank">amirali-hosseini-abrishami</a>
+        </li>
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          <a href="https://dev.to/yamato0234" target="_blank">dev.to/yamato0234</a>
+        </li>
+        <li>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          <a href="https://no0nestudio.com" target="_blank">no0nestudio.com</a>
         </li>
         <li>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -66,18 +72,17 @@ import '../styles/global.css';
           <div class="cv__entry-head">
             <div>
               <span class="cv__entry-title">M.Sc. Cybersecurity</span>
-              <span class="cv__entry-org">Tarbiat Modares University</span>
+              <span class="cv__entry-org">Tarbiat Modares University, Tehran</span>
             </div>
             <span class="cv__entry-date">Sep 2024 – Sep 2026 (expected)</span>
           </div>
-          <p class="cv__entry-detail">Thesis: GraphRAG-based architectures for knowledge-intensive ML pipelines.</p>
         </div>
 
         <div class="cv__entry">
           <div class="cv__entry-head">
             <div>
               <span class="cv__entry-title">B.Sc. Computer Engineering</span>
-              <span class="cv__entry-org">Islamic Azad University</span>
+              <span class="cv__entry-org">Islamic Azad University Mashhad</span>
             </div>
             <span class="cv__entry-date">Sep 2018 – Sep 2024</span>
           </div>
@@ -86,7 +91,7 @@ import '../styles/global.css';
       </div>
     </section>
 
-
+    <!-- EXPERIENCE -->
     <section class="cv__section">
   <h2 class="cv__section-title">Experience</h2>
   <div class="cv__entries">
@@ -106,6 +111,7 @@ import '../styles/global.css';
     </div>
   </div>
 </section>
+
     <!-- SKILLS -->
     <section class="cv__section">
       <h2 class="cv__section-title">Skills</h2>
@@ -141,13 +147,37 @@ import '../styles/global.css';
         <div class="cv__entry">
           <div class="cv__entry-head">
             <div>
+              <span class="cv__entry-title">nomem</span>
+              <span class="cv__stack">Python · SQLite · PostgreSQL · Neo4j</span>
+            </div>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/nomem" target="_blank">GitHub ↗</a>
+          </div>
+          <p class="cv__entry-detail">
+            Persistent per-user memory for LLM apps as a self-updating, bi-temporal knowledge graph. MIT core; open-core model.
+          </p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">Research — M.Sc. thesis</span>
+            </div>
+          </div>
+          <p class="cv__entry-detail">
+            Verifiable inference for GraphRAG in regulatory domains.
+          </p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
               <span class="cv__entry-title">Anti-Money Laundering Detection — Elliptic Bitcoin Dataset</span>
               <span class="cv__stack">Python · PyTorch Geometric · cuML</span>
             </div>
             <a class="cv__entry-link" href="https://github.com/Amir0234-afk/aml-elliptic" target="_blank">GitHub ↗</a>
           </div>
           <p class="cv__entry-detail">
-            Graph neural network (GCN, SkipGCN) vs. tabular baseline (Random Forest) comparison for illicit transaction classification on a real-world AML dataset. Accelerated tabular training with GPU via cuML. Random Forest achieved <strong>F1: 0.80</strong> (Precision: 0.90, Recall: 0.72); GNN track revealed limits of graph structure without rich neighbourhood features.
+            Graph neural network (GCN, SkipGCN) vs. tabular baseline (Random Forest) comparison for illicit transaction classification on a real-world AML dataset. Accelerated tabular training with GPU via cuML. Random Forest achieved <strong>F1: 0.80</strong> (Precision: 0.90, Recall: 0.72) on the temporal split (train steps 1–34, test 35–49); GCN/SkipGCN reached about 0.51–0.52; GNN track revealed limits of graph structure without rich neighbourhood features.
           </p>
         </div>
 
@@ -167,13 +197,26 @@ import '../styles/global.css';
         <div class="cv__entry">
           <div class="cv__entry-head">
             <div>
-              <span class="cv__entry-title">D&amp;D AI Game Master</span>
-              <span class="cv__stack">Python · FastAPI · React 19 · TypeScript</span>
+              <span class="cv__entry-title">youtube-enhancer</span>
+              <span class="cv__stack">JavaScript · Manifest V3</span>
             </div>
-            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/dnd-ai" target="_blank">GitHub ↗</a>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/youtube-enhancer" target="_blank">GitHub ↗</a>
           </div>
           <p class="cv__entry-detail">
-            Browser-based solo tabletop RPG with an LLM as Game Master. FastAPI backend with provider-agnostic LLM routing (OpenAI, Anthropic, Gemini, Ollama). Persistent memory via rolling summarisation every 10 turns; React 19 + Vite frontend.
+            Browser extension with 30+ individually toggleable YouTube features.
+          </p>
+        </div>
+
+        <div class="cv__entry">
+          <div class="cv__entry-head">
+            <div>
+              <span class="cv__entry-title">zsh-vibecheck</span>
+              <span class="cv__stack">Shell · zsh</span>
+            </div>
+            <a class="cv__entry-link" href="https://github.com/Amir0234-afk/zsh-vibecheck" target="_blank">GitHub ↗</a>
+          </div>
+          <p class="cv__entry-detail">
+            Three zsh functions that judge your actions: based, cringe, vibecheck.
           </p>
         </div>
 
@@ -215,9 +258,9 @@ import '../styles/global.css';
     --text-dim:   #6b7088;
     --rule:       #1e3a8a40;
 
-    --serif:  "Instrument Serif", Georgia, serif;
-    --sans:   "DM Sans", ui-sans-serif, system-ui, sans-serif;
-    --mono:   "DM Mono", ui-monospace, monospace;
+    --serif:  var(--font-sans);
+    --sans:   var(--font-sans);
+    --mono:   var(--font-mono);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

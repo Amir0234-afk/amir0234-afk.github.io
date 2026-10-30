@@ -14,7 +14,7 @@ export async function GET(context) {
       title: p.data.title,
       description: p.data.summary,
       pubDate: p.data.date,
-      link: `/blog/${p.slug}/`,
+      link: `/blog/${p.id.replace(/\.(md|mdx)$/, "")}/`,
     })),
   });
 }
