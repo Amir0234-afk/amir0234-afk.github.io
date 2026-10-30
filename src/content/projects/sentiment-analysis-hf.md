@@ -11,7 +11,7 @@ repo: https://github.com/Amir0234-afk/sentiment-analysis-hf
 
 ## What
 
-A binary sentiment classification pipeline built on BERT-family models from Hugging Face. Supports training on IMDB or SST-2 out of the box, or any custom CSV. Evaluation reports accuracy and macro-F1.
+A binary sentiment classification pipeline built on BERT-family models from Hugging Face. Supports training on IMDB or SST-2 out of the box, or any custom CSV. Evaluation reports accuracy and macro-F1; for SST-2 it runs on the validation split ("SST-2 validation"). No numbers are published here.
 
 ## Design
 
